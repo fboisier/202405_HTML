@@ -1,0 +1,28 @@
+INSTALAR GIT - los que tengan windows Instalar GIT BASH. 
+
+Tener cuenta GITHUB
+
+PASO 0 configurar información básica: 
+git config --global user.name "Tu Nombre"
+git config --global user.email "tuemail@ejemplo.com"
+
+
+1.- git init 
+2.- git add .
+3.- git commit -m "se termina la logica de subida de archivos masivos en campos extras del cliente A."
+
+4.- ir a github y crear un repositorio NUEVO.
+5.- copian los comandos de inicio: ejemplo:
+
+        git remote add origin https://github.com/suusuario/otro.git
+        git branch -M main
+        git push -u origin main
+
+6.- si es primera vez, vincular cuenta y configurar antes:
+
+
+--- PARA ACTUALIZAR EL PROYECTO HASTA GITHUB.
+
+1.- git add .
+2.- git commit -m "comentario del commit"
+3.- git push
