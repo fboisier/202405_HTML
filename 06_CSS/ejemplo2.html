@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+
+        p {
+            color: red;
+        }
+        #especial{
+            color: blue;
+            font-size: 30px;
+        }
+
+        .grupo {
+            color: green;
+        }
+
+        div > p:nth-child(2){
+            color: rebeccapurple;
+        }
+        div > p:nth-child(2) span{
+            color: yellow;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1 class="grupo">Esto es otra pagina</h1>
+    <p>Esto es un parrafo1</p>
+    <p>Esto es un parrafo2</p>
+    <p id="especial">Esto es un parrafo3</p>
+    <p>Esto es un parrafo4</p>
+    <p class="grupo">Esto es un parrafo5</p>
+    <p class="grupo">Esto es un parrafo6</p>
+
+    <div>
+        <p>Esto es un <span>parrafo7</span></p>
+        <p>Esto es un <span>parrafo8</span></p>
+        <p>Esto es un <span>parrafo9</span></p>
+    </div>
+    <div>
+        <h1>Titulo del segundo div.</h1>
+        <nav>
+            <p>Esto es un <span>parrafo10</span></p>
+            <p>Esto es un <span>parrafo11</span></p>
+            <p>Esto es un <span>parrafo12</span></p>
+        </nav>
+    </div>
+
+
+</body>
+</html>

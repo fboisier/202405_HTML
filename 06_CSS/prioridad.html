@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { /*  PRIORIDAD 0.1  */
+            color: red /*  PRIORIDAD 1000  */; 
+        }
+
+        h1 {    /*  PRIORIDAD 1  */
+            color: rebeccapurple;
+        }
+
+        .green { /*  PRIORIDAD 10  */
+            color: mediumaquamarine;
+        }
+        
+        #red { /*  PRIORIDAD 100  */
+            color: tomato;
+        }
+
+        [data-nombre="pancho"]{
+            background-color: black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1 id="red" class="green" data-nombre="pancho">¡Hola, gente!</h1>
+    <p data-nombre="pancho">Esto es un ejemplo</p>
+</body>
+
+</html>
