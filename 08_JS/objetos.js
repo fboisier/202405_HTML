@@ -7,7 +7,10 @@ var edad = 50;
 var persona = {
     'nombre': 'Francisco',
     'apellidos': 'Santos',
-    'edad': 18
+    'edad': 18,
+    'nombre_completo': function () {
+        return this.nombre + ' ' + this.apellidos
+    }
 }
 
 var persona1 = {
@@ -18,6 +21,7 @@ var persona1 = {
 
 
 console.log(persona);
+console.log(persona.nombre_completo())
 
 console.log(persona.nombre);
 console.log(persona1.nombre);

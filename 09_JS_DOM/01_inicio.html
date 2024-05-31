@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cambia el color de fondo</title>
+
+        <style>
+            h1{
+                color:blue;
+            }
+
+            p{
+                color:red;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Haz clic en el botón para cambiar el color de fondo</h1>
+        <button onclick="alertarAlUsuario(this)">¡Alerta Pancho 1!</button>
+        <button id="alertar">Alerta Pancho 2!</button>
+        <button id="alertar_tres">Alertar Pancho 3!</button>
+
+        <p>UNO</p>
+        <p>DOS</p>
+        <p>TRES</p>
+
+        <h4>UNO</h4>
+        <h4>DOS</h4>
+        <h4>TRES</h4>
+        
+        <script>
+            var boton = document.querySelector("#alertar");
+            var valorActualHtml = boton.innerHTML;
+            boton.innerHTML = valorActualHtml + " ACTUALIZADO";
+
+            function alertarAlUsuario(elemento){
+                console.log(elemento);
+                elemento.innerHTML = "PANCHO CAMBIADO";
+                alert('PANCHO DOS');
+            }
+
+            boton.addEventListener("click", alertarAlUsuario);
+
+            document.querySelector("#alertar_tres").addEventListener("click", function(){
+                alert('PANCHO TRES');
+            })
+
+            var parrafos = document.querySelectorAll("p")
+
+
+            for(var i = 0; i < parrafos.length; i++){
+                parrafos[i].addEventListener("click", alertarAlUsuario);
+            }
+
+            var parrafos = document.querySelectorAll("p")
+    
+            for (var elemento of parrafos){
+                elemento.addEventListener("click", alertarAlUsuario);
+            }
+
+            document.querySelectorAll("h4").forEach(function(elemento){
+                elemento.addEventListener("click", function(){
+                    alert('PANCHO cuatro');
+                    this.innerHTML = "CAMBIADO OTRA VEZ";
+                });
+            })
+
+        </script>
+
+    </body>
+</html>

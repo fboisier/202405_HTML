@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Change JS</title>
+</head>
+<body>
+
+    <h1>Select Change JS</h1>
+    <select id="select">
+        <option value="1">Opcion 1</option>
+        <option value="2">Opcion 2</option>
+        <option value="3">Opcion 3</option>
+    </select>
+    <p id="parrafo"></p>
+
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+
+    <script>
+
+        const select = document.querySelector("#select");
+        const p = document.querySelector("#parrafo");
+
+        select.addEventListener("change", function(){
+            var valorSeleccionado = select.value;
+
+            p.innerHTML = valorSeleccionado;
+            document.querySelectorAll("span").forEach(function(elemento){
+                var valorCapturado = parseInt(elemento.innerText);
+                elemento.innerText = valorSeleccionado * valorCapturado;
+            })
+        });
+
+    </script>
+</body>
+</html>
