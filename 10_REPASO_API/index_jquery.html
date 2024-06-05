@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso</title>
+    <link rel="stylesheet" href="REPASO/css/normalize.css">
+    <link rel="stylesheet" href="REPASO/css/bootstrap.min.css">
+    <link rel="stylesheet" href="REPASO/css/mi_estilo.css">
+</head>
+<body>
+
+    <div class="container mt-3">
+
+        <header>
+            <h2 class="arriba-rojo">Repaso</h2>
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-4">
+                    <h4>Input de Entrada</h4>
+                    <div class="control-propio">
+                        <input type="email">
+                        <button type="submit" class="btnAgregar">Agregar</button>
+                    </div>
+                    <div class="control-propio">
+                        <input type="email">
+                        <button type="submit" class="btnAgregar">Agregar 2</button>
+                    </div>
+                    <div class="control-propio">
+                        <input type="email">
+                        <button type="submit" class="btnAgregar">Agregar 3</button>
+                    </div>
+                    <div class="control-propio">
+                        <input type="email">
+                        <button type="submit" class="btnAgregar">Agregar 4</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>Salida de nuestros textos</h4>
+                    <div class="salida">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="REPASO/js/jquery-3.7.1.min.js"></script>
+    <script src="REPASO/js/bootstrap.min.js"></script>
+    <script>
+        $(".btnAgregar").click(function(){
+            var valorHermano = $(this).parent().children("input").val();
+            $(".salida ul").prepend(`<li>${ valorHermano }</li>`);
+        });
+    </script>
+</body>
+</html>

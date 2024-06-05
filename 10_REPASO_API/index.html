@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso</title>
+    <link rel="stylesheet" href="REPASO/css/normalize.css">
+    <link rel="stylesheet" href="REPASO/css/bootstrap.min.css">
+    <link rel="stylesheet" href="REPASO/css/mi_estilo.css">
+</head>
+<body>
+
+    <div class="container mt-3">
+
+        <header>
+            <h2 class="arriba-rojo">Repaso</h2>
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-12">
+                    <h4>Input de Entrada</h4>
+                    <div class="control-propio">
+                        <input type="number">
+                        <button type="submit" id="btnAgregar">Agregar</button>
+                    </div>
+                    <hr>
+                    <h4>Salida de nuestros textos</h4>
+                    <div class="salida">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="REPASO/js/bootstrap.min.js"></script>
+    <script>
+
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        var boton = document.getElementById("btnAgregar");
+        var textoControl = document.querySelector(".control-propio input");
+        var salida = document.querySelector(".salida")
+
+        textoControl.value = "Prueba";
+
+        boton.addEventListener("click", function(){
+            getCoderData();
+        });
+
+        async function getCoderData() {
+            var valor = textoControl.value;
+            var response = await fetch("https://pokeapi.co/api/v2/pokemon/"+valor);
+            var coderData = await response.json();
+
+            console.log(coderData.types);
+
+            var arregloColores = ['primary','secondary','success','danger','warning','info','light','dark'];
+
+            var tiposHtml = '';
+
+            for (let i = 0; i < coderData.types.length; i++) {
+                var numero = getRandomInt(0,7);
+                const type = coderData.types[i].type.name;
+                console.log(type);
+                tiposHtml += `<span class="badge rounded-pill text-bg-${arregloColores[numero]} m-1">${type}</span>`;
+            }
+
+            salida.innerHTML += `
+                <div class="card" style="width: 18rem;">
+                    <img src="${coderData.sprites.other.dream_world.front_default}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5>${coderData.name.toUpperCase()}</h5>
+                        <div>
+                            ${tiposHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+
+    </script>
+</body>
+</html>

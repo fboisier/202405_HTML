@@ -1,0 +1,73 @@
+/* *{
+    outline: 1px dotted red;
+} */
+
+header{
+    border-bottom: 5px solid gray;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+.arriba-rojo{
+    display: inline;
+    border-top: 3px solid red;
+    margin: 20px 0px;
+    padding: 0px 5px;
+}
+
+.control-propio{
+    display: flex;
+    flex-direction: row;
+    max-width: 400px;
+    margin-bottom: 30px;
+}
+.control-propio input{
+    width: 60%;
+    padding-left: 10px;
+    border-top: 3px solid darkslateblue;
+    border-left: 3px solid darkslateblue;
+    border-bottom: 3px solid darkslateblue;
+    border-right: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 35px;
+}
+
+.control-propio button{
+    width: 40%;
+    height: 35px;
+    background-color: darkslateblue;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: white;
+    border: none;
+}
+
+.salida{
+    width: 100%;
+    min-height: 400px;
+    border-radius: 10px;
+    border: 3px solid darkslateblue;
+    background-color: cadetblue;
+}
+
+ul li{
+    display: block;
+}
+
+.card{
+    margin: 10px;
+    border: 3px solid darkslateblue;
+    border-radius: 10px;
+    min-height: 200px;
+    max-width: 200px;
+    display: inline-block;
+}
+
+.card img{
+    border-bottom: 3px solid darkslateblue;
+    aspect-ratio: 16/18;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
