@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,13 @@
     <link rel="stylesheet" href="REPASO/css/bootstrap.min.css">
     <link rel="stylesheet" href="REPASO/css/mi_estilo.css">
 </head>
+
 <body>
 
     <div class="container mt-3">
 
         <header>
-            <h2 class="arriba-rojo">Repaso</h2>
+            <h2 class="arriba-rojo">Repaso API AJAX y VIENDO MODALES</h2>
         </header>
 
         <main>
@@ -21,39 +23,146 @@
                 <div class="col-4">
                     <h4>Input de Entrada</h4>
                     <div class="control-propio">
-                        <input type="email">
+                        <input type="text">
                         <button type="submit" class="btnAgregar">Agregar</button>
                     </div>
-                    <div class="control-propio">
-                        <input type="email">
-                        <button type="submit" class="btnAgregar">Agregar 2</button>
-                    </div>
-                    <div class="control-propio">
-                        <input type="email">
-                        <button type="submit" class="btnAgregar">Agregar 3</button>
-                    </div>
-                    <div class="control-propio">
-                        <input type="email">
-                        <button type="submit" class="btnAgregar">Agregar 4</button>
-                    </div>
+                    <button id="mostrarSalida" class="btn btn-primary">Mostrar Salida</button>
+                    <button id="ocultarSalida" class="btn btn-secondary">Ocultar Salida</button>
+
+                    <button id="visibilidadSalida" class="btn btn-danger mt-1">Mostar/Ocultar Salida</button>
+                    <button id="visibilidadModoOscuro" class="btn btn-warning mt-1">Mostar/Ocultar Modo Oscuro</button>
                 </div>
                 <div class="col">
-                    <h4>Salida de nuestros textos</h4>
-                    <div class="salida">
-                        <ul></ul>
-                    </div>
+                    <h4>Tus Imagenes!</h4>
+                    <div class="salida"></div>
                 </div>
             </div>
         </main>
+        <div class="modal-personalizado">
+            <div class="modal-personalizado-body"></div>
+            <button>Cerrar</button>
+        </div>
+        <div id="modal-bootstrap" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="confirmar" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="REPASO/js/jquery-3.7.1.min.js"></script>
     <script src="REPASO/js/bootstrap.min.js"></script>
     <script>
-        $(".btnAgregar").click(function(){
+
+        if (localStorage.getItem('modoOscuro')) {
+            $("body").addClass("body-dark");
+        }
+
+        $("#mostrarSalida").click(function () {
+            $(".salida").fadeIn(2000).addClass("salida-dark");
+            $(".card").addClass("card-dark");
+            $("body").addClass("body-dark");
+        });
+        $("#ocultarSalida").click(function () {
+            $(".salida").fadeOut(4000).removeClass("salida-dark");
+            $(".card").removeClass("card-dark");
+            $("body").removeClass("body-dark");
+        });
+
+        $("#visibilidadSalida").click(function () {
+            $(".salida").fadeToggle(1000).toggleClass("salida-dark");
+        });
+
+        $("#visibilidadModoOscuro").click(function () {
+            $(".salida").toggleClass("salida-dark");
+            $(".card").toggleClass("card-dark");
+            $("body").toggleClass("body-dark");
+
+            var resultado = $("body").hasClass("body-dark");
+
+            console.log(resultado);
+
+            if ($("body").hasClass("body-dark")) {
+                localStorage.setItem('modoOscuro', true);
+            } else {
+                localStorage.setItem('modoOscuro', false);
+            }
+            //localStorage.setItem('modoOscuro', $("body").hasClass("body-dark"));
+        });
+
+        $(".modal-personalizado button").on("click", function () {
+            $(".modal-personalizado").fadeOut(100);
+        });
+
+        $(document).on("click", ".card", function () {
+            console.log("ESTO ESTA CARGADO DESDE EL INICIO!!! PARA TODOS LOS .card que pudiesen existir en algun momento");
+            var html = $(this).html()
+            $(".modal-personalizado-body").html(html);
+            $(".modal-personalizado").fadeIn(100);
+            $("#modal-bootstrap .modal-body").html(html);
+            //$("#modal-bootstrap").modal("show");
+            $("body").addClass("modal-abierto");
+        });
+
+        $("body.modal-abierto").click(function(){
+            $(".modal-personalizado").fadeIn(100);
+            $("body").removeClass("modal-abierto");
+        });
+
+        $("#confirmar").on("click", function () {
+            $("#modal-bootstrap").modal("hide");
+            alert("REGISTRO ELIMINADO!")
+        });
+
+        $(".btnAgregar").on("click", function () {
             var valorHermano = $(this).parent().children("input").val();
-            $(".salida ul").prepend(`<li>${ valorHermano }</li>`);
+
+
+            $.ajax({
+                url: `https://api.giphy.com/v1/gifs/search?api_key=FY8W8P3R8oMK696mvMmspydqIIdTsE3b&q=${valorHermano}&limit=6&offset=0&rating=pg&lang=es&bundle=clips_grid_picker`,
+            })
+                .done(function (respuesta) {
+                    console.log(respuesta.data);
+
+                    var esDark = $("body").hasClass("body-dark");
+
+                    var claseDark = '';
+                    if (esDark) {
+                        claseDark = 'card-dark';
+                    }
+
+                    //var claseDark = (esDark)? 'card-dark' : '';
+
+                    respuesta.data.forEach(function (elemento) {
+                        $(".salida").prepend(
+                            `
+                            <div class="card card-gif ${claseDark}">
+                                <img src="${elemento.images.original.url}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5>${elemento.username}</h5>
+                                    <div>
+                                        <p>${elemento.title}<p>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                        );
+                    });
+                });
+
         });
     </script>
 </body>
+
 </html>
